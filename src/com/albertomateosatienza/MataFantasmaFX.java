@@ -6,41 +6,28 @@
 package com.albertomateosatienza;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.shape.Circle;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author PC07
- */
-public class MataFantasmaFX extends Application {
+
+
+ 
+ 
+    public class MataFantasmaFX extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Nunca te rindas");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Nunca te rindas!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void start(Stage primaryStage) {   
+    StackPane root = new StackPane();
+    Scene scene = new Scene(root, 600, 400);
+    primaryStage.setTitle("PONGFX");
+    primaryStage.setScene(scene);
+    primaryStage.show();
+    
+    Circle circleBall = new Circle(10,30,7);
+    root.getChildren().add(circleBall);
     }
-
     /**
      * @param args the command line arguments
      */
