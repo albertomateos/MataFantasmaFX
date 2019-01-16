@@ -106,11 +106,7 @@ import javafx.stage.Stage;
                     if (medusaX <=-50){
                         velocidadx = 2;
                         
-                    }
-                    
-                    
-                    
-                    
+                    }       
                 };
             };
                
