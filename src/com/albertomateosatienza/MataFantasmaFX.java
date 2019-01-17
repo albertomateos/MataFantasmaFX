@@ -9,6 +9,8 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application; 
 import javafx.scene.Group;
 import javafx.scene.Scene; 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color; 
 import javafx.scene.shape.Arc; 
@@ -29,6 +31,10 @@ import javafx.stage.Stage;
         int lado3 = 100; 
         int velocidadx = 2;
         int medusaX = 0;
+        int murcielagox = 30;
+        int murcielagoy = 50;
+        int velocidadbatx = 3;
+        int velocidadbaty = 2;
         
         
                 
@@ -39,6 +45,12 @@ import javafx.stage.Stage;
         primaryStage.setTitle("MataFantasma");
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        Image bat = new Image(getClass().getResourceAsStream("images/Bat.png"));
+        ImageView batview = new ImageView(bat);
+        batview.setScaleX(0.3);
+        batview.setScaleY(0.3);
+        root.getChildren().add(batview);
         
         Arc arc = new Arc(medusaCenterX,50, 25, 25, 0, 180); 
         arc.setType(ArcType.OPEN); 
@@ -90,7 +102,11 @@ import javafx.stage.Stage;
         groupPerson.setLayoutY(300);
         
         
+        
         root.getChildren().add(groupPerson);
+        
+        
+        
         
         AnimationTimer animationmedusa;
             animationmedusa = new AnimationTimer(){
@@ -105,8 +121,23 @@ import javafx.stage.Stage;
                     }
                     if (medusaX <=-50){
                         velocidadx = 2;
-                        
-                    }       
+                        } 
+                    batview.setLayoutX(murcielagox);
+                    batview.setLayoutY(murcielagoy);
+                    murcielagox = velocidadbatx;
+                    murcielagoy = velocidadbaty;
+                    if (murcielagox >=50){
+                        velocidadbatx = 3;
+                    }
+                    if (murcielagox <=0){
+                        velocidadbatx = -3;
+                    }
+                    if (murcielagoy >=100){
+                        velocidadbaty = 2;
+                    }
+                    if (murcielagoy <=0){
+                        velocidadbaty = -2;
+                    }
                 };
             };
                
