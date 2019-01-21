@@ -5,6 +5,7 @@
  */
 package com.albertomateosatienza;
 
+import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application; 
 import javafx.scene.Group;
@@ -31,10 +32,10 @@ import javafx.stage.Stage;
         int lado3 = 100; 
         int velocidadx = 2;
         int medusaX = 0;
-        int murcielagox = 30;
-        int murcielagoy = 50;
-        int velocidadbatx = 3;
-        int velocidadbaty = 2;
+        int murcielagoy =0;
+        int velocidady = 2;
+        int murcielagoX = 0;
+       
         
         
                 
@@ -50,6 +51,8 @@ import javafx.stage.Stage;
         ImageView batview = new ImageView(bat);
         batview.setScaleX(0.3);
         batview.setScaleY(0.3);
+        batview.setLayoutX(-50);
+        batview.setLayoutY(-100);
         root.getChildren().add(batview);
         
         Arc arc = new Arc(medusaCenterX,50, 25, 25, 0, 180); 
@@ -121,23 +124,16 @@ import javafx.stage.Stage;
                     }
                     if (medusaX <=-50){
                         velocidadx = 2;
-                        } 
-                    batview.setLayoutX(murcielagox);
+                    }
                     batview.setLayoutY(murcielagoy);
-                    murcielagox = velocidadbatx;
-                    murcielagoy = velocidadbaty;
-                    if (murcielagox >=50){
-                        velocidadbatx = 3;
+                    batview.setLayoutX(murcielagoX);
+                    murcielagoy += velocidady;
+                    velocidady = 2;
+                    
+                    if(murcielagoy >=400){
+                        murcielagoy = 0;
                     }
-                    if (murcielagox <=0){
-                        velocidadbatx = -3;
-                    }
-                    if (murcielagoy >=100){
-                        velocidadbaty = 2;
-                    }
-                    if (murcielagoy <=0){
-                        velocidadbaty = -2;
-                    }
+                
                 };
             };
                
