@@ -51,7 +51,7 @@ import javafx.stage.Stage;
         ImageView batview = new ImageView(bat);
         batview.setScaleX(0.3);
         batview.setScaleY(0.3);
-        batview.setLayoutX(-50);
+        batview.setLayoutX(-10);
         batview.setLayoutY(-100);
         root.getChildren().add(batview);
         
@@ -131,8 +131,12 @@ import javafx.stage.Stage;
                     velocidady = 2;
                     
                     if(murcielagoy >=400){
-                        murcielagoy = 0;
+                        murcielagoy = -100;   
                     }
+                     Random random = new Random();
+                       int n = random.nextInt(400);
+                       System.out.println(n);
+                       
                 
                 };
             };
