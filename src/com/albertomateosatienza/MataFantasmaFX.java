@@ -35,7 +35,7 @@ import javafx.stage.Stage;
         int murcielagoy =0;
         int velocidady = 2;
         int murcielagoX = 0;
-       
+        
         
         
                 
@@ -108,13 +108,19 @@ import javafx.stage.Stage;
         
         root.getChildren().add(groupPerson);
         
+       Random random = new Random();
         
         
         
         AnimationTimer animationmedusa;
             animationmedusa = new AnimationTimer(){
+                
+                
+                
                 @Override
                 public void  handle(long now){
+                    
+                   
                     groupPerson.setLayoutX(medusaX);
                     medusaX+= velocidadx;
                     
@@ -128,20 +134,29 @@ import javafx.stage.Stage;
                     batview.setLayoutY(murcielagoy);
                     batview.setLayoutX(murcielagoX);
                     murcielagoy += velocidady;
-                    velocidady = 2;
+                    velocidady = 4;
                     
                     if(murcielagoy >=400){
-                        murcielagoy = -100;   
+                        murcielagoy = -100;
+                        murcielagoX = random.nextInt(450);
+                    System.out.println(murcielagoX);
                     }
-                     Random random = new Random();
-                       int n = random.nextInt(400);
-                       System.out.println(n);
+                    
+                    
+                    
+                    
                        
-                
                 };
             };
                
          animationmedusa.start();
+         
+         
+         
+        
+                
+         
+         
           
         
         
