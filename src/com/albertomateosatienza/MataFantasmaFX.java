@@ -5,13 +5,17 @@
  */
 package com.albertomateosatienza;
 
+import java.awt.event.KeyEvent;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application; 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene; 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import static javafx.scene.input.KeyCode.LEFT;
+import static javafx.scene.input.KeyCode.RIGHT;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color; 
 import javafx.scene.shape.Arc; 
@@ -35,6 +39,7 @@ import javafx.stage.Stage;
         int murcielagoy =0;
         int velocidady = 2;
         int murcielagoX = 0;
+        int stickCurrentSpeed = 0;
         
         
         
@@ -140,26 +145,28 @@ import javafx.stage.Stage;
                         murcielagoy = -100;
                         murcielagoX = random.nextInt(450);
                     System.out.println(murcielagoX);
-                    }
-                    
-                    
-                    
-                    
-                       
+                    }      
                 };
             };
-               
-         animationmedusa.start();
-         
-         
-         
-        
+             
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            
+            switch(event.getCode()){
+                case LEFT:
+                    break;
+                    stickCurrentSpeed = -20;
+                case RIGHT:
+                    break;
+                    stickCurrentSpeed =20;
+                    
                 
-         
-         
-          
+            }
+    }
+});
         
-        
+         animationmedusa.start();   
     } 
     /**
      * 
