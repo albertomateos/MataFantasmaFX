@@ -5,7 +5,6 @@
  */
 package com.albertomateosatienza;
 
-import java.awt.event.KeyEvent;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application; 
@@ -14,8 +13,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene; 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import static javafx.scene.input.KeyCode.LEFT;
-import static javafx.scene.input.KeyCode.RIGHT;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color; 
 import javafx.scene.shape.Arc; 
@@ -40,8 +38,10 @@ import javafx.stage.Stage;
         int velocidady = 2;
         int murcielagoX = 0;
         int stickCurrentSpeed = 0;
-        
-        
+        int ballX = 0;
+        int ballY = 200;
+        int velocidadball = 0;
+        int movimiento = 0;
         
                 
     
@@ -52,6 +52,13 @@ import javafx.stage.Stage;
         primaryStage.setScene(scene);
         primaryStage.show();
         
+        Image ball = new Image(getClass().getResourceAsStream("images/bola de dragon1.png"));
+        ImageView ballview = new ImageView(ball);
+        ballview.setLayoutX(30);
+        ballview.setLayoutY(70);
+        root.getChildren().add(ballview);
+        
+                
         Image bat = new Image(getClass().getResourceAsStream("images/Bat.png"));
         ImageView batview = new ImageView(bat);
         batview.setScaleX(0.3);
@@ -127,14 +134,14 @@ import javafx.stage.Stage;
                     
                    
                     groupPerson.setLayoutX(medusaX);
-                    medusaX+= velocidadx;
+                    medusaX+= movimiento;
                     
-                    if (medusaX >=475){
-                        velocidadx = -2;
+                    if (medusaX <-50){
+                        medusaX = -50;
                         
                     }
-                    if (medusaX <=-50){
-                        velocidadx = 2;
+                    if (medusaX >475){
+                        medusaX = 475;
                     }
                     batview.setLayoutY(murcielagoy);
                     batview.setLayoutX(murcielagoX);
@@ -145,32 +152,42 @@ import javafx.stage.Stage;
                         murcielagoy = -100;
                         murcielagoX = random.nextInt(450);
                     System.out.println(murcielagoX);
-                    }      
+                    } 
+                    
+                    ballview.setLayoutX(ballX);
+                    ballview.setLayoutY(ballY);
+                    ballY+= velocidadball;
+                    velocidadball = -4;
+                    
+                    
+                    if(ballY <=-10){
+                        ballY = 300;
+                        ballX = medusaX;
+                    }
                 };
             };
-             
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            
-            switch(event.getCode()){
-                case LEFT:
-                    break;
-                    stickCurrentSpeed = -20;
-                case RIGHT:
-                    break;
-                    stickCurrentSpeed =20;
-                    
-                
-            }
-    }
-});
         
-         animationmedusa.start();   
-    } 
+         animationmedusa.start(); 
+        scene.setOnKeyPressed((KeyEvent event) -> {
+            switch(event.getCode()){
+                case RIGHT:
+                    movimiento = 10;
+                    break;
+                case LEFT:
+                    movimiento = -10;
+                    break;
+                    
+            }
+        });
+        scene.setOnKeyReleased((KeyEvent event) -> {
+            movimiento = 0;
+        });
+    }
     /**
      * 
      * @param args the commant line arguments
      */
-    public static void main(String[] args) { launch(args); } 
+    public static void main(String[] args) { 
+        launch(args);
+    } 
 } 
