@@ -33,13 +33,13 @@ import javafx.stage.Stage;
         int lado2 = 85;
         int lado3 = 100; 
         int velocidadx = 2;
-        int medusaX = 0;
+        int medusaX = 40;
         int murcielagoy =0;
         int velocidady = 2;
         int murcielagoX = 0;
         int stickCurrentSpeed = 0;
-        int ballX = 0;
-        int ballY = 200;
+        int ballX = 115;
+        int ballY = 300;
         int velocidadball = 0;
         int movimiento = 0;
         
@@ -54,9 +54,9 @@ import javafx.stage.Stage;
         
         Image ball = new Image(getClass().getResourceAsStream("images/bola de dragon1.png"));
         ImageView ballview = new ImageView(ball);
-        ballview.setLayoutX(30);
-        ballview.setLayoutY(70);
-        root.getChildren().add(ballview);
+        ballview.setLayoutX(50);
+        ballview.setLayoutY(30);
+        
         
                 
         Image bat = new Image(getClass().getResourceAsStream("images/Bat.png"));
@@ -157,12 +157,14 @@ import javafx.stage.Stage;
                     ballview.setLayoutX(ballX);
                     ballview.setLayoutY(ballY);
                     ballY+= velocidadball;
-                    velocidadball = -4;
+                    velocidadball = -3;
                     
                     
                     if(ballY <=-10){
                         ballY = 300;
-                        ballX = medusaX;
+                        root.getChildren().remove(ballview);
+                     
+                        
                     }
                 };
             };
@@ -175,6 +177,10 @@ import javafx.stage.Stage;
                     break;
                 case LEFT:
                     movimiento = -10;
+                    break;
+                case SPACE:
+                    ballX = medusaX+75;
+                    root.getChildren().add(ballview);
                     break;
                     
             }
