@@ -8,7 +8,6 @@ package com.albertomateosatienza;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application; 
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene; 
 import javafx.scene.image.Image;
@@ -19,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc; 
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage; 
 
@@ -42,6 +42,7 @@ import javafx.stage.Stage;
         int ballY = 300;
         int velocidadball = 0;
         int movimiento = 0;
+        
         
                 
     
@@ -115,7 +116,7 @@ import javafx.stage.Stage;
         groupPerson.getChildren().add(boca);
         groupPerson.setLayoutX(0);
         groupPerson.setLayoutY(300);
-        
+       
         
         
         root.getChildren().add(groupPerson);
@@ -157,12 +158,21 @@ import javafx.stage.Stage;
                     ballview.setLayoutX(ballX);
                     ballview.setLayoutY(ballY);
                     ballY+= velocidadball;
-                    velocidadball = -3;
+                    velocidadball = -4;
                     
                     
                     if(ballY <=-10){
-                        ballY = 300;
+                       ballY = 300;
+                        
                         root.getChildren().remove(ballview);
+                
+                Shape shapeColision = Shape.intersect(ballview, rectStick
+                );
+                boolean colisionVacia = shapeColision.getBoundsInLocal().isEmpty();
+                
+                if(colisionVacia == false){
+                    stickCurrentSpeed = -3;
+                }
                      
                         
                     }
@@ -180,6 +190,7 @@ import javafx.stage.Stage;
                     break;
                 case SPACE:
                     ballX = medusaX+75;
+                    ballY = 300;
                     root.getChildren().add(ballview);
                     break;
                     
@@ -188,7 +199,9 @@ import javafx.stage.Stage;
         scene.setOnKeyReleased((KeyEvent event) -> {
             movimiento = 0;
         });
+        
     }
+   
     /**
      * 
      * @param args the commant line arguments
