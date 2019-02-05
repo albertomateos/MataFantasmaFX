@@ -107,6 +107,18 @@ import javafx.stage.Stage;
         boca.setHeight(10);
         boca.setFill(Color.RED);
         
+        Rectangle murcielago = new Rectangle();
+        murcielago.setWidth(60);
+        murcielago.setHeight(30);
+        murcielago.setFill(Color.YELLOW);
+        root.getChildren().add(murcielago);
+        
+        
+        Group grupoMurcielago = new Group();
+        grupoMurcielago.getChildren().add(murcielago);
+        grupoMurcielago.getChildren().add(batview);
+        root.getChildren().add(grupoMurcielago);
+        
         
         Group groupPerson = new Group();
         groupPerson.getChildren().add(arc);
@@ -163,19 +175,27 @@ import javafx.stage.Stage;
                     
                     if(ballY <=-10){
                        ballY = 300;
-                        
+                       
                         root.getChildren().remove(ballview);
+                    }
+                //Shape rectStick = null;
+                //Shape shapeColision = Shape.intersect(arc, rectStick
+                //);
+                //boolean colisionVacia = shapeColision.getBoundsInLocal().isEmpty();
                 
-                Shape shapeColision = Shape.intersect(ballview, rectStick
-                );
-                boolean colisionVacia = shapeColision.getBoundsInLocal().isEmpty();
+                //if(colisionVacia == false){
+                  //  stickCurrentSpeed = -3;
+                //}
+                //Shape shapeColision = Shape.intersect(murcielago, rectStick
+                //);
+                 //boolean colisionVacia = shapeColision.getBoundsInLocal().isEmpty();
                 
-                if(colisionVacia == false){
-                    stickCurrentSpeed = -3;
-                }
+                //if(colisionVacia == false){
+                  //  stickCurrentSpeed = -3;
+               // }
                      
                         
-                    }
+                    
                 };
             };
         
